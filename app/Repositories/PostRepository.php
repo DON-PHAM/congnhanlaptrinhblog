@@ -37,4 +37,12 @@ class PostRepository implements PostRepositoryInterface
         $post = $this->find($id);
         return $post->delete();
     }
+
+    /**
+     * Tìm post theo slug
+     */
+    public function findBySlug($slug)
+    {
+        return Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
+    }
 } 

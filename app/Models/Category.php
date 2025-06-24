@@ -10,6 +10,11 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'slug', 'description', 'parent_id', 'icon'
+        'name', 'slug', 'description', 'parent_id', 'icon', 'display_order'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -24,7 +24,7 @@
             }, 3000);
         </script>
     @endif
-    <table class="table table-bordered">
+    <table id="categories-table" class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -33,6 +33,7 @@
                 <th>Slug</th>
                 <th>Mô tả</th>
                 <th>Danh mục cha</th>
+                <th>Thứ tự</th>
                 <th>Hành động</th>
             </tr>
         </thead>
@@ -51,9 +52,10 @@
                     <td>{{ $category->slug }}</td>
                     <td>{{ $category->description }}</td>
                     <td>{{ optional($category->parent)->name }}</td>
+                    <td>{{ $category->display_order }}</td>
                     <td>
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-primary btn-sm">Sửa</a>
-                        <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display:inline-block" class="delete-form">
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display:inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $category->id }}">Xóa</button>
@@ -65,7 +67,7 @@
     </table>
     {{ $categories->links() }}
 </div>
-<!-- Modal xác nhận xóa -->
+<!-- Modal xác nhận xóa dùng chung -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -74,7 +76,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Bạn có chắc chắn muốn xóa danh mục này không?
+        Bạn có chắc chắn muốn xóa mục này không?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
@@ -82,19 +84,36 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
+@push('styles')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"/>
+@endpush
 @push('scripts')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 <script>
-    let deleteForm;
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            deleteForm = this.closest('form');
-            var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            modal.show();
+    $(document).ready(function() {
+        // Khởi tạo DataTable
+        $('#categories-table').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/vi.json'
+            },
+            paging: false, // Tắt phân trang DataTable vì đã dùng Laravel paginate
+            info: false // Tắt info tổng số bản ghi
         });
-    });
-    document.getElementById('confirmDelete').addEventListener('click', function() {
-        if(deleteForm) deleteForm.submit();
+        // Xử lý nút xóa với modal xác nhận
+        let deleteForm;
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                deleteForm = this.closest('form');
+                var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                modal.show();
+            });
+        });
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if(deleteForm) deleteForm.submit();
+        });
     });
 </script>
 @endpush

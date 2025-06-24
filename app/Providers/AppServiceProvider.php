@@ -13,6 +13,8 @@ use App\Repositories\SettingRepositoryInterface;
 use App\Repositories\SettingRepository;
 use App\Repositories\TagRepositoryInterface;
 use App\Repositories\TagRepository;
+use Illuminate\Support\Facades\View;
+use App\Http\ViewComposers\CategoryComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->make('view')->composer(
+            ['frontend.modules.siderbar_menu', 'frontend.modules.siderbar_right'],
+            function ($view) {
+                $categoryRepo = app(\App\Repositories\CategoryRepositoryInterface::class);
+                $postRepo = app(\App\Repositories\PostRepositoryInterface::class);
+                $tagRepo = app(TagRepositoryInterface::class);
+                (new \App\Http\ViewComposers\CategoryComposer($categoryRepo, $postRepo, $tagRepo))->compose($view);
+            }
+        );
     }
 }

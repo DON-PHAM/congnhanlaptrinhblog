@@ -1,56 +1,55 @@
 @extends('layouts.layout')
 @section('content')
-<div class='blogContent'>
+
                 <!--[ Main content ]-->
                 <main class='mainbar'>
                     <div class='section' id='top-widget'>
                         <div class='widget FeaturedPost' data-version='2' id='FeaturedPost00'>
-                            <h2 class='title'>Pinned Post
+                            <h2 class='title'>Bài viết nổi bật
                                 <svg class='line' viewBox='0 0 24 24'>
                                     <path d='M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z'></path>
                                     <line x1='16' x2='2' y1='8' y2='22'></line>
                                     <line x1='17' x2='9' y1='15' y2='15'></line>
                                 </svg>
                             </h2>
+                            @if($featuredPost)
                             <div class='itemFeatured' role='feed'>
                                 <article class='item'>
                                     <div class='itemThumbnail postThumbnail'>
-                                        <a href='https://ngohoanganhtuank7.blogspot.com/2021/05/ao.html'>
-                                            <img alt='Áo' class='imgThumb lazy'
-                                                data-src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJ1SFGjMhLEmyVEejpeMvi4Nwcyjp93aS6t4fv21OWeWqV6DGQJ05lJmBabFI2pFkZi6fHbidEU2CeN-uOuc_KJ-qpE0BERIh73BxGhyP7TKouQvH_JohWSlGvo2M4r6EwWO0CvYx-TFM/w600-h300-p-k-no-nu/Shadow-Series-Apple-iDevices-V2.jpg'
-                                                src='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' />
+                                        <a href="{{ route('frontend.posts.detail', $featuredPost->slug) }}">
+                                            <img alt='{{ $featuredPost->title }}' class='imgThumb' src="{{ asset('storage/' . $featuredPost->image) }}" />
                                         </a>
                                     </div>
                                     <div class='itemContent'>
                                         <div class='postHeader'>
+                                            @if($featuredPost->category)
                                             <div class='postLabel' data-text='in'>
-                                                <a aria-label='Áo' data-text='Áo'
-                                                    href='https://ngohoanganhtuank7.blogspot.com/search/label/%C3%81o'
-                                                    rel='tag'>
+                                                <a aria-label='{{ $featuredPost->category->name }}' data-text='{{ $featuredPost->category->name }}' href='{{ route('frontend.categories.posts', $featuredPost->category->slug) }}' rel='tag'>
+                                                    {{ $featuredPost->category->name }}
                                                 </a>
                                             </div>
+                                            @endif
                                         </div>
-                                        <h3 class='itemTitle'><a
-                                                href='https://ngohoanganhtuank7.blogspot.com/2021/05/ao.html'>Áo</a>
-                                        </h3>
+                                        <h3 class='itemTitle'><a href="{{ route('frontend.posts.detail', $featuredPost->slug) }}">{{ $featuredPost->title }}</a></h3>
                                         <p class='itemEntry'>
-                                            200.000 vnđ
+                                            {!! $featuredPost->excerpt !!}
                                         </p>
                                         <div class='itemInfo postInfo'>
-                                            <time class='postTimestamp published' data-text='May 23, 2021'
-                                                datetime='2021-05-23T08:04:00-07:00'
-                                                title='Published: May 23, 2021'></time>
+                                            <time class='postTimestamp published' datetime="{{ $featuredPost->created_at }}' title='Published: {{ $featuredPost->created_at->format('d/m/Y') }}">{{ $featuredPost->created_at->format('d/m/Y') }}</time>
                                         </div>
                                     </div>
                                 </article>
                             </div>
+                            @else
+                                <div class='alert alert-info'>Chưa có bài viết ghim.</div>
+                            @endif
                         </div>
                     </div>
                     <div class='section' id='main-widget'>
                         <div class='widget Blog' data-version='2' id='Blog1'>
                             <div class='blogTitle'>
                                 <h2 class='title'>
-                                    Latest Posts
+                                    Danh sách bài viết
                                 </h2>
                                 <div class='postMode' onclick='listMode()'>
                                     <svg class='line svg-1' viewBox='0 0 24 24'>
@@ -66,113 +65,51 @@
                                 </div>
                                 <script>/*<![CDATA[*/(localStorage.getItem('list')) === 'listmode' ? document.querySelector('#mainContent').classList.add('listMode') : document.querySelector('#mainContent').classList.remove('listMode') /*]]>*/</script>
                             </div>
-                            <div class='blogPosts'>
+                            <div class='blogPosts' id="blogPosts">
+                                @forelse($posts as $post)
                                 <article class='hentry'>
                                     <div class='postThumbnail'>
-                                        <a
-                                            href='https://ngohoanganhtuank7.blogspot.com/2021/05/median-ui-v15-new-premium-blogger.html'>
-                                            <img alt='Median Ui v1.5 New Premium Blogger Template' class='imgThumb lazy'
-                                                data-src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJ1SFGjMhLEmyVEejpeMvi4Nwcyjp93aS6t4fv21OWeWqV6DGQJ05lJmBabFI2pFkZi6fHbidEU2CeN-uOuc_KJ-qpE0BERIh73BxGhyP7TKouQvH_JohWSlGvo2M4r6EwWO0CvYx-TFM/w600-h300-p-k-no-nu/Shadow-Series-Apple-iDevices-V2.jpg'
-                                                src='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' />
+                                        <a href="{{ route('frontend.posts.detail', $post->slug) }}">
+                                            <img alt='{{ $post->title }}' class='imgThumb' src='{{ asset('storage/' . $post->image) }}' />
                                         </a>
                                     </div>
                                     <div class='postContent'>
                                         <div class='postHeader'>
+                                            @if($post->category)
                                             <div class='postLabel' data-text='in'>
-                                                <a aria-label='Blogger' data-text='Blogger'
-                                                    href='https://ngohoanganhtuank7.blogspot.com/search/label/Blogger'
-                                                    rel='tag'>
-                                                </a>
-                                                <a aria-label='PREMIUM' data-text='PREMIUM'
-                                                    href='https://ngohoanganhtuank7.blogspot.com/search/label/PREMIUM'
-                                                    rel='tag'>
+                                                <a aria-label='{{ $post->category->name }}' data-text='{{ $post->category->name }}' href="{{ route('frontend.categories.posts', $post->category->slug) }}" rel='tag'>
+                                                    {{ $post->category->name }}
                                                 </a>
                                             </div>
+                                            @endif
                                         </div>
                                         <h2 class='postTitle'>
-                                            <a data-text='Median Ui v1.5 New Premium Blogger Template'
-                                                href='https://ngohoanganhtuank7.blogspot.com/2021/05/median-ui-v15-new-premium-blogger.html'
-                                                rel='bookmark'>
-                                                Median Ui v1.5 New Premium Blogger Template
+                                            <a href="{{ route('frontend.posts.detail', $post->slug) }}" rel='bookmark'>
+                                                {{ $post->title }}
                                             </a>
                                         </h2>
                                         <p class='postEntry snippet'>
-                                            NỘI DUNG<b> Median UI V1.5 Responsive Premium Blogger Template </b> là một
-                                            Template mới với thiết kế đơn giả&#8230;
+                                        {!! $post->excerpt !!}
                                         </p>
                                         <div class='postInfo'>
-                                            <time class='postTimestamp updated' data-text='May 21, 2021'
-                                                datetime='2021-05-21T03:49:56-07:00'
-                                                title='Last updated: May 21, 2021'></time>
-                                            <a aria-label='Comments' class='postComment' data-text='2'
-                                                href='https://ngohoanganhtuank7.blogspot.com/2021/05/median-ui-v15-new-premium-blogger.html#comment'>
-                                                <svg class='line' viewBox='0 0 24 24'>
-                                                    <g transform='translate(2.000000, 2.000000)'>
-                                                        <path class='fill'
-                                                            d='M17.0710351,17.0698449 C14.0159481,20.1263505 9.48959549,20.7867004 5.78630747,19.074012 C5.23960769,18.8538953 1.70113357,19.8338667 0.933341969,19.0669763 C0.165550368,18.2990808 1.14639409,14.7601278 0.926307229,14.213354 C-0.787154393,10.5105699 -0.125888852,5.98259958 2.93020311,2.9270991 C6.83146881,-0.9756997 13.1697694,-0.9756997 17.0710351,2.9270991 C20.9803405,6.8359285 20.9723008,13.1680512 17.0710351,17.0698449 Z'>
-                                                        </path>
-                                                    </g>
-                                                </svg>
-                                            </a>
-                                        </div>
-     
-                                    </div>
-                                </article>
-                                <article class='hentry'>
-                                    <div class='postThumbnail'>
-                                        <a
-                                            href='https://ngohoanganhtuank7.blogspot.com/2021/05/tao-sitemap-cho-blogwebsite-theo-danh.html'>
-                                            <img alt='TẠO SITEMAP CHO BLOG/WEBSITE THEO DANH MỤC/LABEL CỰC ĐẸP'
-                                                class='imgThumb lazy'
-                                                data-src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEju578adW7Lc4aG0qgYfl3rk4D_qL2sJ5dJWD1tOa_L-40tMloPV2Y6qRxguiDq_LsrMrcFwnVTnS30gcuRzN1WsM7PtwXqV_m9Z9erZbuvXaJ6Uh5LMN9X45O425IKfTFtGp3HqvgOuIs/w600-h300-p-k-no-nu/Capture.PNG'
-                                                src='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' />
-                                        </a>
-                                    </div>
-                                    <div class='postContent'>
-                                        <div class='postHeader'>
-                                            <div class='postLabel' data-text='in'>
-                                                <a aria-label='Blogger' data-text='Blogger'
-                                                    href='https://ngohoanganhtuank7.blogspot.com/search/label/Blogger'
-                                                    rel='tag'>
-                                                </a>
-                                                <a aria-label='CODE' data-text='CODE'
-                                                    href='https://ngohoanganhtuank7.blogspot.com/search/label/CODE'
-                                                    rel='tag'>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h2 class='postTitle'>
-                                            <a data-text='TẠO SITEMAP CHO BLOG/WEBSITE THEO DANH MỤC/LABEL CỰC ĐẸP'
-                                                href='https://ngohoanganhtuank7.blogspot.com/2021/05/tao-sitemap-cho-blogwebsite-theo-danh.html'
-                                                rel='bookmark'>
-                                                TẠO SITEMAP CHO BLOG/WEBSITE THEO DANH MỤC/LABEL CỰC ĐẸP
-                                            </a>
-                                        </h2>
-                                        <p class='postEntry snippet'>
-                                            NỘI DUNG Việc thiết kế một blog/website chuẩn SEO là vô cùng quan trọng đi
-                                            kèm đó là việc thiết kế &#8230;
-                                        </p>
-                                        <div class='postInfo'>
-                                            <time class='postTimestamp published' data-text='May 18, 2021'
-                                                datetime='2021-05-18T10:14:00-07:00'
-                                                title='Published: May 18, 2021'></time>
-                                            <a aria-label='Comments' class='postComment' data-text='3'
-                                                href='https://ngohoanganhtuank7.blogspot.com/2021/05/tao-sitemap-cho-blogwebsite-theo-danh.html#comment'>
-                                                <svg class='line' viewBox='0 0 24 24'>
-                                                    <g transform='translate(2.000000, 2.000000)'>
-                                                        <path class='fill'
-                                                            d='M17.0710351,17.0698449 C14.0159481,20.1263505 9.48959549,20.7867004 5.78630747,19.074012 C5.23960769,18.8538953 1.70113357,19.8338667 0.933341969,19.0669763 C0.165550368,18.2990808 1.14639409,14.7601278 0.926307229,14.213354 C-0.787154393,10.5105699 -0.125888852,5.98259958 2.93020311,2.9270991 C6.83146881,-0.9756997 13.1697694,-0.9756997 17.0710351,2.9270991 C20.9803405,6.8359285 20.9723008,13.1680512 17.0710351,17.0698449 Z'>
-                                                        </path>
-                                                    </g>
-                                                </svg>
-                                            </a>
+                                            <time class='postTimestamp updated' datetime="{{ $post->created_at }}'" title='Last updated: {{ $post->created_at->format('d/m/Y') }}'>{{ $post->created_at->format('d/m/Y') }}</time>
+                                            <a aria-label="views" class="postComment" data-text="{{ $post->views }}" >
+                                            <svg class="line" viewBox="0 0 24 24">
+                                    <path d="M1 12C1 12 5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                 </svg>
+</a>
                                         </div>
                                     </div>
                                 </article>
+                                @empty
+                                <div class='alert alert-info'>Chưa có bài viết nào.</div>
+                                @endforelse
                             </div>
+                           
                             <div class='blogPager' id='blogPager'>
-                                <div class='noPost' data-text='No results found'></div>
-                                <div class='newerLink noPost' data-text='Newest'>
+                                <div class='noPost' data-text='Chưa có kết quả'></div>
+                                <div class='newerLink noPost' data-text='Newest' id="loadMorePosts">
                                     <svg class='line' viewBox='0 0 24 24'>
                                         <g
                                             transform='translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.000000, 8.500000)'>
@@ -204,124 +141,90 @@
                     </div>
                 </main>
                 <!--[ Sidebar content ]-->
-                <aside class='sidebar'>
-                    <div class='section' id='side-widget'>
-                        <div class='widget PopularPosts' data-version='2' id='PopularPosts00'>
-                            <h2 class='title'>Popular post</h2>
-                            <div class='widget-content'>
-                                <div class='itemPopulars' role='feed'>
-                                    <article class='itemPopular noImage'>
-                                        <div class='itemContent'>
-                                            <div class='postHeader'>
-                                                <div class='postLabel' data-text='in'>
-                                                    <a aria-label='Blogger' data-text='Blogger'
-                                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/Blogger'
-                                                        rel='tag'>
-                                                    </a>
-                                                    <a aria-label='PREMIUM' data-text='PREMIUM'
-                                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/PREMIUM'
-                                                        rel='tag'>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class='itemInner'>
-                                                <div class='itemFlex'>
-                                                    <h3 class='itemTitle'><a
-                                                            href='https://ngohoanganhtuank7.blogspot.com/2021/05/median-ui-v15-new-premium-blogger.html'>Median
-                                                            Ui v1.5 New Premium Blogger Template</a></h3>
-                                                    <div class='itemInfo postInfo'>
-                                                        <time class='postTimestamp updated' data-text='May 21, 2021'
-                                                            datetime='2021-05-21T03:49:56-07:00'
-                                                            title='Last updated: May 21, 2021'></time>
-                                                        <a aria-label='Comments' class='postComment' data-text='2'
-                                                            href='https://ngohoanganhtuank7.blogspot.com/2021/05/median-ui-v15-new-premium-blogger.html#comment'>
-                                                            <svg class='line' viewBox='0 0 24 24'>
-                                                                <g transform='translate(2.000000, 2.000000)'>
-                                                                    <path class='fill'
-                                                                        d='M17.0710351,17.0698449 C14.0159481,20.1263505 9.48959549,20.7867004 5.78630747,19.074012 C5.23960769,18.8538953 1.70113357,19.8338667 0.933341969,19.0669763 C0.165550368,18.2990808 1.14639409,14.7601278 0.926307229,14.213354 C-0.787154393,10.5105699 -0.125888852,5.98259958 2.93020311,2.9270991 C6.83146881,-0.9756997 13.1697694,-0.9756997 17.0710351,2.9270991 C20.9803405,6.8359285 20.9723008,13.1680512 17.0710351,17.0698449 Z'>
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class='itemPopular noImage'>
-                                        <div class='itemContent'>
-                                            <div class='postHeader'>
-                                                <div class='postLabel' data-text='in'>
-                                                    <a aria-label='Áo' data-text='Áo'
-                                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/%C3%81o'
-                                                        rel='tag'>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class='itemInner'>
-                                                <div class='itemFlex'>
-                                                    <h3 class='itemTitle'><a
-                                                            href='https://ngohoanganhtuank7.blogspot.com/2021/05/ao.html'>Áo</a>
-                                                    </h3>
-                                                    <div class='itemInfo postInfo'>
-                                                        <time class='postTimestamp published' data-text='May 23, 2021'
-                                                            datetime='2021-05-23T08:04:00-07:00'
-                                                            title='Published: May 23, 2021'></time>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='widget Label' data-version='2' id='Label00'>
-                            <h3 class='title'>
-                                Labels
-                            </h3>
-                            <div class='widgetContent cloud'>
-                                <div class='labelSize size-1'>
-                                    <a aria-label='Áo' class='labelName'
-                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/%C3%81o'>
-                                        <span class='labelTitle'>Áo</span>
-                                        <span class='labelCount' data-text='(1)'></span>
-                                    </a>
-                                </div>
-                                <div class='labelSize size-5'>
-                                    <a aria-label='Blogger' class='labelName'
-                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/Blogger'>
-                                        <span class='labelTitle'>Blogger</span>
-                                        <span class='labelCount' data-text='(2)'></span>
-                                    </a>
-                                </div>
-                                <div class='labelSize size-1'>
-                                    <a aria-label='CODE' class='labelName'
-                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/CODE'>
-                                        <span class='labelTitle'>CODE</span>
-                                        <span class='labelCount' data-text='(1)'></span>
-                                    </a>
-                                </div>
-                                <div class='labelSize size-1'>
-                                    <a aria-label='PREMIUM' class='labelName'
-                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/PREMIUM'>
-                                        <span class='labelTitle'>PREMIUM</span>
-                                        <span class='labelCount' data-text='(1)'></span>
-                                    </a>
-                                </div>
-                                <div class='labelSize size-1'>
-                                    <a aria-label='TEMPLATE' class='labelName'
-                                        href='https://ngohoanganhtuank7.blogspot.com/search/label/TEMPLATE'>
-                                        <span class='labelTitle'>TEMPLATE</span>
-                                        <span class='labelCount' data-text='(1)'></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--[ Sidebar sticky ]-->
-                    <div class='no-items section' id='side-sticky'>
-                    </div>
-                </aside>
-            </div>
+                
+            
 
 @endsection
+
+@push('scripts')
+<script>
+let currentPage = 1;
+const perPage = 10;
+const loadMoreBtn = document.getElementById('loadMorePosts');
+const blogPosts = document.getElementById('blogPosts');
+if(loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function() {
+        currentPage++;
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.textContent = 'Đang tải...';
+        fetch(`/api/posts?page=${currentPage}&per_page=${perPage}`)
+            .then(res => res.json())
+            .then(res => {
+                if(res.data && res.data.length > 0) {
+                    res.data.forEach(post => {
+                        const article = document.createElement('article');
+                        article.className = 'hentry';
+                        article.innerHTML = `
+                            <div class='postThumbnail'>
+                                <a href='/post/${post.slug}'>
+                                    <img alt='${post.title}' class='imgThumb' src='${post.image ?? ''}' />
+                                </a>
+                            </div>
+                            <div class='postContent'>
+                                <div class='postHeader'>
+                                    ${post.category ? `<div class='postLabel' data-text='in'><a aria-label='${post.category.name}' data-text='${post.category.name}' href='/category/${post.category.slug}' rel='tag'>${post.category.name}</a></div>` : ''}
+                                </div>
+                                <h2 class='postTitle'>
+                                    <a href='/post/${post.slug}' rel='bookmark'>${post.title}</a>
+                                </h2>
+                                <p class='postEntry snippet'>${post.excerpt ?? ''}</p>
+                                <div class='postInfo'>
+                                    <time class='postTimestamp updated' title='Last updated: ${post.created_at}'>${post.created_at}</time>
+                                    <a aria-label="views" class="postComment" data-text="${post.views}" >
+<svg class="line" viewBox="0 0 24 24"><g transform="translate(2.000000, 2.000000)"><path class="fill" d="M17.0710351,17.0698449 C14.0159481,20.1263505 9.48959549,20.7867004 5.78630747,19.074012 C5.23960769,18.8538953 1.70113357,19.8338667 0.933341969,19.0669763 C0.165550368,18.2990808 1.14639409,14.7601278 0.926307229,14.213354 C-0.787154393,10.5105699 -0.125888852,5.98259958 2.93020311,2.9270991 C6.83146881,-0.9756997 13.1697694,-0.9756997 17.0710351,2.9270991 C20.9803405,6.8359285 20.9723008,13.1680512 17.0710351,17.0698449 Z"></path></g></svg>
+</a>
+                                </div>
+                            </div>
+                        `;
+                        blogPosts.appendChild(article);
+                    });
+                    if(res.current_page >= res.last_page) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.disabled = false;
+                        loadMoreBtn.textContent = 'Tải thêm bài viết';
+                    }
+                } else {
+                    loadMoreBtn.style.display = 'none';
+                }
+            })
+            .catch(() => {
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'Tải thêm bài viết';
+            });
+    });
+}
+</script>
+@endpush
+
+@push('seo')
+{!! \App\Helpers\SeoHelper::generateHtmlMetaTags((object)[
+    'meta_title' => config('app.name', 'Công nhân lập trình'),
+    'title' => config('app.name', 'Công nhân lập trình'),
+    'meta_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
+    'excerpt' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
+    'meta_keywords' => 'blog, lập trình, công nghệ, phát triển bản thân',
+    'og_title' => config('app.name', 'Công nhân lập trình'),
+    'og_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
+    'og_image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
+    'slug' => '',
+    'image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
+    'twitter_title' => config('app.name', 'Công nhân lập trình'),
+    'twitter_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
+    'twitter_image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
+    'created_at' => now(),
+    'updated_at' => now(),
+    'user' => null,
+    'category' => null
+]) !!}
+@endpush

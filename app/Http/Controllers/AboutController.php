@@ -111,4 +111,13 @@ class AboutController extends Controller
         $about->delete();
         return redirect()->route('abouts.index')->with('success', 'Xóa thông tin cá nhân thành công!');
     }
+
+    /**
+     * Hiển thị trang about ở frontend
+     */
+    public function aboutFrontend()
+    {
+        $about = About::first();
+        return view('frontend.about.index', compact('about'));
+    }
 }

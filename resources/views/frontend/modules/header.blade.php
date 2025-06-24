@@ -40,10 +40,8 @@
                     <!--[ Header Search ]-->
                     <div class='headerSearch'>
                         <!--[ Search Form ]-->
-                        <form action='https://ngohoanganhtuank7.blogspot.com/search' class='searchForm' method='get'
-                            target='_top'>
-                            <input aria-label='Search' autocomplete='off' id='searchInput' name='q'
-                                placeholder='Search...' type='text' />
+                        <form action="{{ route('frontend.search') }}" class="searchForm" method="get">
+                            <input aria-label='Search' autocomplete='off' id='searchInput' name='q' placeholder='Search...' type='text' />
                             <button aria-label='Search button' class='searchButton' type='submit'>
                                 <svg class='line' viewBox='0 0 24 24'>
                                     <g transform='translate(2.000000, 2.000000)'>
@@ -53,7 +51,6 @@
                                 </svg>
                             </button>
                             <button aria-label='Search close' class='close' type='reset'>
-                                <!--[ Close icon ]-->
                                 <svg class='line' viewBox='0 0 24 24'>
                                     <line x1='18' x2='6' y1='6' y2='18'></line>
                                     <line x1='6' x2='18' y1='6' y2='18'></line>
@@ -110,10 +107,10 @@
                                             </div>
                                         </div>
                                         <div class='profileInfo'>
-                                            <div class='profileLink'>Ngô Hoàng Anh Tuấn</div>
-                                            <div class='profileText'>Content Creator, Graphic Designer, UI / UX Designer
+                                            <div class='profileLink'>Phạm Văn Đôn</div>
+                                            <div class='profileText'>Công nhân lập trình C#, WPF, PHP, Laravel, VueJS, ReactJS, NodeJS, MongoDB, MySQL, PostgreSQL, Docker, Kubernetes, AWS, Azure, GCP, etc.
                                             </div>
-                                            <div class='profileData location' data-text='Đà Nẵng, Đà Nẵng, Vietnam'>
+                                            <div class='profileData location' data-text='Hà Nội, Việt Nam'>
                                                 <svg class='line' viewBox='0 0 24 24'>
                                                     <g transform='translate(4.500000, 3.000000)'>
                                                         <path

@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    // Thêm các trường SEO cho trang chủ
+    'description' => env('APP_DESCRIPTION', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
+    'logo' => env('APP_LOGO', 'backend/assets/img/AdminLTELogo.png'),
+
 ];

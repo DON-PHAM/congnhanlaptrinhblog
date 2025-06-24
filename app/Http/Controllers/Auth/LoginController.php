@@ -11,6 +11,10 @@ class LoginController extends Controller
     // Hiển thị form đăng nhập
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            session()->flash('warning', 'Bạn đã đăng nhập, không thể vào trang đăng nhập!');
+            return redirect('/admin');
+        }
         return view('auth.login');
     }
 

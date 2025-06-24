@@ -1,11 +1,13 @@
 <footer class='sectionInner'>
             <!--[ Credit ]-->
             <div class='creditInner'>
-                <p>&#169; <span id='getYear'>
-                        <script>/*<![CDATA[*/ var d = new Date(); var n = d.getFullYear(); document.getElementById('getYear').innerHTML = n; /*]]>*/</script>
-                    </span> &#8231; <a href='https://ngohoanganhtuank7.blogspot.com/'>Median UI V1.5</a>. All rights
-                    reserved. <span class='creator'>Made with &#9829; by <a href='https://theme.jagodesain.com'>Jago
-                            Desain</a></span></p>
+                <p>
+                    &copy; <span id='getYear'>
+                        <script>var d = new Date(); var n = d.getFullYear(); document.getElementById('getYear').innerHTML = n;</script>
+                    </span>
+                    &#8231; <a href='https://congnhanlaptrinh.info.vn/' target='_blank'>congnhanlaptrinh.info.vn</a> - Chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.<br>
+                    <span class='creator'>Thiết kế & phát triển bởi <strong>Phạm Văn Đôn</strong> &#9829;</span>
+                </p>
                 <!--[ Back top button ]-->
                 <div class='toTop' onclick='window.scrollTo({top: 0});'>
                     <!--[ Arrow up icon ]-->

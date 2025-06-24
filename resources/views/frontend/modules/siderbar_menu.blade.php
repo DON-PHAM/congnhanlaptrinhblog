@@ -2,20 +2,8 @@
             <div class='section' id='main-menu'>
                 <div class='widget HTML' data-version='2' id='HTML000'>
                     <ul class='htmlMenu' itemscope='itemscope' itemtype='https://schema.org/SiteNavigationElement'>
-                        <li class='close'>
-                            <label class='link' for='offnav-input'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g
-                                        transform='translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.000000, 8.500000)'>
-                                        <path d='M14,0 C14,0 9.856,7 7,7 C4.145,7 0,0 0,0'></path>
-                                    </g>
-                                </svg>
-                                <span class='name' data-text='Back'></span>
-                            </label>
-                        </li>
-                        <li class='dropDown'>
-                            <input class='dropMenu hidden' id='offdropMenu1' name='dropDown' type='checkbox' />
-                            <label class='link' for='offdropMenu1'>
+                    <li>
+                            <a class='link' href="{{ route('home') }}" itemprop='url'>
                                 <svg class='line' viewBox='0 0 24 24'>
                                     <g transform='translate(2.500000, 2.500000)'>
                                         <line x1='6.6787' x2='12.4937' y1='12.0742685' y2='12.0742685'></line>
@@ -24,23 +12,18 @@
                                         </path>
                                     </g>
                                 </svg>
-                                <span class='name'>Sub menu</span>
-                                <svg class='line down' viewBox='0 0 24 24'>
-                                    <g transform='translate(5.000000, 8.500000)'>
-                                        <path d='M14,0 C14,0 9.856,7 7,7 C4.145,7 0,0 0,0'></path>
-                                    </g>
-                                </svg>
-                            </label>
-                            <ul>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 01</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 02</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 03</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 04</a></li>
-                            </ul>
+                                <span class='name' itemprop='name'>Trang chủ</span>
+                            </a>
                         </li>
-                        <li class='dropDown break'>
-                            <input class='dropMenu hidden' id='offdropMenu2' name='dropDown' type='checkbox' />
-                            <label class='link' for='offdropMenu2'>
+                        <li>
+                            <a class='link' href="{{ route('frontend.about') }}" itemprop='url'>
+                                <svg class='line' viewBox='0 0 24 24'><circle cx='12' cy='7' r='4'/><path d='M5.5 21a7.5 7.5 0 0 1 13 0'/></svg>
+                                <span class='name' itemprop='name'>Thông tin cá nhân</span>
+                            </a>
+                        </li>
+                    @foreach($sidebarCategories as $category)
+                        <li>
+                            <a class='link' href="{{ route('frontend.categories.posts', $category->slug) }}" itemprop='url'>
                                 <svg class='line' viewBox='0 0 24 24'>
                                     <g transform='translate(2.500000, 2.500000)'>
                                         <line x1='6.6787' x2='12.4937' y1='12.0742685' y2='12.0742685'></line>
@@ -49,227 +32,13 @@
                                         </path>
                                     </g>
                                 </svg>
-                                <span class='name'>Sub menu</span>
-                                <svg class='line down' viewBox='0 0 24 24'>
-                                    <g transform='translate(5.000000, 8.500000)'>
-                                        <path d='M14,0 C14,0 9.856,7 7,7 C4.145,7 0,0 0,0'></path>
-                                    </g>
-                                </svg>
-                            </label>
-                            <ul>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 05</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 06</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 07</a></li>
-                                <li itemprop='name'><a href='#' itemprop='url'>Sub menu 08</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class='link' href='https://ngohoanganhtuank7.blogspot.com/p/about-us_20.html'
-                                itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                                    <g transform='translate(2.749500, 2.549500)'>
-                                        <path
-                                            d='M6.809,18.9067 C3.137,18.9067 9.41469125e-14,18.3517 9.41469125e-14,16.1277 C9.41469125e-14,13.9037 3.117,11.8997 6.809,11.8997 C10.481,11.8997 13.617,13.8847 13.617,16.1077 C13.617,18.3307 10.501,18.9067 6.809,18.9067 Z'>
-                                        </path>
-                                        <path
-                                            d='M6.809,8.728 C9.219,8.728 11.173,6.774 11.173,4.364 C11.173,1.954 9.219,-2.48689958e-14 6.809,-2.48689958e-14 C4.399,-2.48689958e-14 2.44496883,1.954 2.44496883,4.364 C2.436,6.766 4.377,8.72 6.778,8.728 L6.809,8.728 Z'>
-                                        </path>
-                                        <path
-                                            d='M14.0517,7.5293 C15.4547,7.1543 16.4887007,5.8753 16.4887007,4.3533 C16.4897,2.7653 15.3627,1.4393 13.8647,1.1323'>
-                                        </path>
-                                        <path
-                                            d='M14.7113,11.104 C16.6993,11.104 18.3973,12.452 18.3973,13.655 C18.3973,14.364 17.8123,15.092 16.9223,15.301'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>About</span>
+                                <span class='name new' itemprop='name'>{{ $category->name }}</span>
                             </a>
                         </li>
-                        <li class='break'>
-                            <a class='link' href='https://ngohoanganhtuank7.blogspot.com/p/contact_19.html'
-                                itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(2.452080, 2.851980)'>
-                                        <path
-                                            d='M15.0928322,6.167017 C15.0928322,6.167017 11.8828071,10.0196486 9.53493746,10.0196486 C7.18807029,10.0196486 3.941955,6.167017 3.941955,6.167017'>
-                                        </path>
-                                        <path
-                                            d='M1.04805054e-13,9.11679198 C1.04805054e-13,2.27869674 2.38095238,8.8817842e-15 9.52380952,8.8817842e-15 C16.6666667,8.8817842e-15 19.047619,2.27869674 19.047619,9.11679198 C19.047619,15.9538847 16.6666667,18.233584 9.52380952,18.233584 C2.38095238,18.233584 1.04805054e-13,15.9538847 1.04805054e-13,9.11679198 Z'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>Contact</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='link' href='#' itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(2.500000, 2.500000)'>
-                                        <line x1='6.6787' x2='12.4937' y1='12.0742685' y2='12.0742685'></line>
-                                        <path
-                                            d='M-1.13686838e-13,5.29836453 C-1.13686838e-13,2.85645977 1.25,0.75931691 3.622,0.272650243 C5.993,-0.214968804 7.795,-0.0463973758 9.292,0.761221672 C10.79,1.56884072 10.361,2.76122167 11.9,3.63645977 C13.44,4.51265024 15.917,3.19645977 17.535,4.94217405 C19.229,6.7697931 19.2200005,9.57550739 19.2200005,11.3640788 C19.2200005,18.1602693 15.413,18.6993169 9.61,18.6993169 C3.807,18.6993169 -1.13686838e-13,18.2288407 -1.13686838e-13,11.3640788 L-1.13686838e-13,5.29836453 Z'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name new' itemprop='name'>Custom Menu 01</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='link' href='#' itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(2.500000, 2.500000)'>
-                                        <line x1='6.6787' x2='12.4937' y1='12.0742685' y2='12.0742685'></line>
-                                        <path
-                                            d='M-1.13686838e-13,5.29836453 C-1.13686838e-13,2.85645977 1.25,0.75931691 3.622,0.272650243 C5.993,-0.214968804 7.795,-0.0463973758 9.292,0.761221672 C10.79,1.56884072 10.361,2.76122167 11.9,3.63645977 C13.44,4.51265024 15.917,3.19645977 17.535,4.94217405 C19.229,6.7697931 19.2200005,9.57550739 19.2200005,11.3640788 C19.2200005,18.1602693 15.413,18.6993169 9.61,18.6993169 C3.807,18.6993169 -1.13686838e-13,18.2288407 -1.13686838e-13,11.3640788 L-1.13686838e-13,5.29836453 Z'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name free' itemprop='name'>Custom Menu 02</span>
-                            </a>
-                        </li>
-                        <li class='break'>
-                            <a class='link' href='https://theme.jagodesain.com/2020/05/template-median-ui.html'
-                                itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(2.000000, 2.000000)'>
-                                        <line x1='9.8791' x2='9.8791' y1='12.791' y2='0.75'></line>
-                                        <polyline points='12.7951 9.8642 9.8791 12.7922 6.9631 9.8642'></polyline>
-                                        <path
-                                            d='M14.3703,5.2587 C17.9493,5.5887 19.2503,6.9287 19.2503,12.2587 C19.2503,19.3587 16.9393,19.3587 10.0003,19.3587 C3.0593,19.3587 0.7503,19.3587 0.7503,12.2587 C0.7503,6.9287 2.0503,5.5887 5.6303,5.2587'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>Download template</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='link' href='https://ngohoanganhtuank7.blogspot.com/p/sitemaps.html'
-                                itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(3.610000, 2.750100)'>
-                                        <line x1='11.9858' x2='4.7658' y1='12.9463' y2='12.9463'></line>
-                                        <line x1='11.9858' x2='4.7658' y1='9.1865' y2='9.1865'></line>
-                                        <line x1='7.521' x2='4.766' y1='5.4272' y2='5.4272'></line>
-                                        <path
-                                            d='M7.63833441e-14,9.25 C7.63833441e-14,16.187 2.098,18.5 8.391,18.5 C14.685,18.5 16.782,16.187 16.782,9.25 C16.782,2.313 14.685,0 8.391,0 C2.098,0 7.63833441e-14,2.313 7.63833441e-14,9.25 Z'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>Sitemap</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='link' href='#' itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(3.500000, 2.000000)'>
-                                        <path
-                                            d='M8.4845,19.6057 C10.8195,19.6057 16.1565,17.2837 16.1565,10.8787 C16.1565,4.4747 16.4345,3.9737 15.8195,3.3577 C15.2035,2.7417 11.9935,0.7507 8.4845,0.7507 C4.9755,0.7507 1.7655,2.7417 1.1505,3.3577 C0.5345,3.9737 0.8125,4.4747 0.8125,10.8787 C0.8125,17.2837 6.1505,19.6057 8.4845,19.6057 Z'>
-                                        </path>
-                                        <polyline points='5.8859 9.8748 7.7779 11.7698 11.6759 7.8698'></polyline>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>Disclaimers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='link' href='#' itemprop='url'>
-                                <svg class='line' viewBox='0 0 24 24'>
-                                    <g transform='translate(3.500000, 2.000000)'>
-                                        <path
-                                            d='M12.9709,7.4033 L12.9709,5.2543 C12.9399,2.7353 10.8719,0.7193 8.3539,0.7503 C5.8869,0.7813 3.8919,2.7673 3.8499,5.2343 L3.8499,7.4033'>
-                                        </path>
-                                        <line x1='8.4103' x2='8.4103' y1='12.1562' y2='14.3772'></line>
-                                        <path
-                                            d='M8.4103,6.8242 C2.6653,6.8242 0.7503,8.3922 0.7503,13.0952 C0.7503,17.7992 2.6653,19.3672 8.4103,19.3672 C14.1553,19.3672 16.0713,17.7992 16.0713,13.0952 C16.0713,8.3922 14.1553,6.8242 8.4103,6.8242 Z'>
-                                        </path>
-                                    </g>
-                                </svg>
-                                <span class='name' itemprop='name'>Privacy</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='widget LinkList' data-version='2' id='LinkList002'>
-                    <label class='link' for='offnav-input'>
-                        <svg class='line' viewBox='0 0 24 24'>
-                            <g transform='translate(2.300000, 2.300000)'>
-                                <line x1='9.73684179' x2='9.73684179' y1='6.162632' y2='13.3110531'></line>
-                                <line x1='13.3146315' x2='6.158842' y1='9.73684179' y2='9.73684179'></line>
-                                <path
-                                    d='M-3.55271368e-14,9.73684211 C-3.55271368e-14,2.43473684 2.43473684,2.13162821e-14 9.73684211,2.13162821e-14 C17.0389474,2.13162821e-14 19.4736842,2.43473684 19.4736842,9.73684211 C19.4736842,17.0389474 17.0389474,19.4736842 9.73684211,19.4736842 C2.43473684,19.4736842 -3.55271368e-14,17.0389474 -3.55271368e-14,9.73684211 Z'>
-                                </path>
-                            </g>
-                        </svg>
-                    </label>
-                    <ul class='socialLink'>
-                        <li>
-                            <a aria-label='Facebook' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M24,3H8A5,5,0,0,0,3,8V24a5,5,0,0,0,5,5H24a5,5,0,0,0,5-5V8A5,5,0,0,0,24,3Zm3,21a3,3,0,0,1-3,3H17V18h4a1,1,0,0,0,0-2H17V14a2,2,0,0,1,2-2h2a1,1,0,0,0,0-2H19a4,4,0,0,0-4,4v2H12a1,1,0,0,0,0,2h3v9H8a3,3,0,0,1-3-3V8A3,3,0,0,1,8,5H24a3,3,0,0,1,3,3Z'>
-                                    </path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a aria-label='Instagram' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M22,3H10a7,7,0,0,0-7,7V22a7,7,0,0,0,7,7H22a7,7,0,0,0,7-7V10A7,7,0,0,0,22,3Zm5,19a5,5,0,0,1-5,5H10a5,5,0,0,1-5-5V10a5,5,0,0,1,5-5H22a5,5,0,0,1,5,5Z'>
-                                    </path>
-                                    <path
-                                        d='M16,9.5A6.5,6.5,0,1,0,22.5,16,6.51,6.51,0,0,0,16,9.5Zm0,11A4.5,4.5,0,1,1,20.5,16,4.51,4.51,0,0,1,16,20.5Z'>
-                                    </path>
-                                    <circle cx='23' cy='9' r='1'></circle>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a aria-label='Twitter' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M13.35,28A13.66,13.66,0,0,1,2.18,22.16a1,1,0,0,1,.69-1.56l2.84-.39A12,12,0,0,1,5.44,4.35a1,1,0,0,1,1.7.31,9.87,9.87,0,0,0,5.33,5.68,7.39,7.39,0,0,1,7.24-6.15,7.29,7.29,0,0,1,5.88,3H29a1,1,0,0,1,.9.56,1,1,0,0,1-.11,1.06L27,12.27c0,.14,0,.28-.05.41a12.46,12.46,0,0,1,.09,1.43A13.82,13.82,0,0,1,13.35,28ZM4.9,22.34A11.63,11.63,0,0,0,13.35,26,11.82,11.82,0,0,0,25.07,14.11,11.42,11.42,0,0,0,25,12.77a1.11,1.11,0,0,1,0-.26c0-.22.05-.43.06-.65a1,1,0,0,1,.22-.58l1.67-2.11H25.06a1,1,0,0,1-.85-.47,5.3,5.3,0,0,0-4.5-2.51,5.41,5.41,0,0,0-5.36,5.45,1.07,1.07,0,0,1-.4.83,1,1,0,0,1-.87.2A11.83,11.83,0,0,1,6,7,10,10,0,0,0,8.57,20.12a1,1,0,0,1,.37,1.05,1,1,0,0,1-.83.74Z'>
-                                    </path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a aria-label='Youtube' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M29.73,9.9A5,5,0,0,0,25.1,5.36a115.19,115.19,0,0,0-18.2,0A5,5,0,0,0,2.27,9.9a69,69,0,0,0,0,12.2A5,5,0,0,0,6.9,26.64c3,.24,6.06.36,9.1.36s6.08-.12,9.1-.36a5,5,0,0,0,4.63-4.54A69,69,0,0,0,29.73,9.9Zm-2,12A3,3,0,0,1,25,24.65a113.8,113.8,0,0,1-17.9,0,3,3,0,0,1-2.78-2.72,65.26,65.26,0,0,1,0-11.86A3,3,0,0,1,7.05,7.35C10,7.12,13,7,16,7s6,.12,9,.35a3,3,0,0,1,2.78,2.72A65.26,65.26,0,0,1,27.73,21.93Z'>
-                                    </path>
-                                    <path
-                                        d='M21.45,15.11l-8-4A1,1,0,0,0,12,12v8a1,1,0,0,0,.47.85A1,1,0,0,0,13,21a1,1,0,0,0,.45-.11l8-4a1,1,0,0,0,0-1.78ZM14,18.38V13.62L18.76,16Z'>
-                                    </path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a aria-label='LinkedIn' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M24,3H8A5,5,0,0,0,3,8V24a5,5,0,0,0,5,5H24a5,5,0,0,0,5-5V8A5,5,0,0,0,24,3Zm3,21a3,3,0,0,1-3,3H8a3,3,0,0,1-3-3V8A3,3,0,0,1,8,5H24a3,3,0,0,1,3,3Z'>
-                                    </path>
-                                    <path d='M11,14a1,1,0,0,0-1,1v6a1,1,0,0,0,2,0V15A1,1,0,0,0,11,14Z'></path>
-                                    <path
-                                        d='M19,13a4,4,0,0,0-4,4v4a1,1,0,0,0,2,0V17a2,2,0,0,1,4,0v4a1,1,0,0,0,2,0V17A4,4,0,0,0,19,13Z'>
-                                    </path>
-                                    <circle cx='11' cy='11' r='1'></circle>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a aria-label='Pinterest' class='link' href='#'>
-                                <svg class='c-1' viewBox='0 0 32 32'>
-                                    <path
-                                        d='M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26a12,12,0,0,1-3.81-.63l1.2-4.81A7.93,7.93,0,0,0,16,23a8.36,8.36,0,0,0,1.4-.12,8,8,0,1,0-9.27-6.49,1,1,0,0,0,2-.35,6,6,0,1,1,3.79,4.56L15,16.24A1,1,0,1,0,13,15.76l-2.7,10.81A12,12,0,1,1,16,28Z'>
-                                    </path>
-                                </svg>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
+           
             <label class='fullClose menu' for='offnav-input'></label>
         </div>

@@ -32,6 +32,7 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">Hình ảnh bài viết</label>
                     <input type="file" name="image" id="image" class="form-control">
+                    <small class="form-text text-muted">Dung lượng tối đa: 3MB</small>
                     @error('image')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
                 <input type="hidden" name="slug" id="slug" value="{{ old('slug') }}">

@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,7 @@ use App\Http\Controllers\TagController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -47,3 +46,21 @@ Route::get('/setting/{key}', function ($key) {
     $setting = Setting::where('key', $key)->first();
     return $setting ? $setting->value : '';
 })->middleware(['auth', 'admin']);
+
+// Route hiển thị danh sách category ở frontend
+Route::get('/categories', [CategoryController::class, 'listFrontend'])->name('frontend.categories.list');
+// Route hiển thị bài viết theo category ở frontend
+Route::get('/category/{slug}', [CategoryController::class, 'postsByCategory'])->name('frontend.categories.posts');
+
+Route::get('/post/{slug}', [PostController::class, 'showFrontend'])->name('frontend.posts.detail');
+
+// Route tăng lượt xem bài viết qua AJAX
+Route::post('/post/{id}/view', [PostController::class, 'increaseView'])->name('frontend.posts.increaseView');
+
+// Route API lấy danh sách bài viết cho lazy load trang chủ
+Route::get('/api/posts', [App\Http\Controllers\HomeController::class, 'lazyLoadPosts'])->name('api.posts.lazy');
+
+Route::get('/search', [PostController::class, 'search'])->name('frontend.search');
+
+// Trang about cá nhân frontend
+Route::get('/about', [AboutController::class, 'aboutFrontend'])->name('frontend.about');

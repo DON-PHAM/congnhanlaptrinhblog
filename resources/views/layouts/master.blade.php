@@ -63,6 +63,11 @@
       <!--begin::Header-->
       @include('backend.modules.header')
       <!--end::Header-->
+      @if(session('warning'))
+        <div class="alert alert-warning text-center" style="margin-bottom:0;">
+          {{ session('warning') }}
+        </div>
+      @endif
       <!--begin::Sidebar-->
       @include('backend.modules.siderbar')
       <!--end::Sidebar-->

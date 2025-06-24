@@ -43,6 +43,7 @@ class CategoryController extends Controller
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
             'icon' => 'nullable|string|max:255',
+            'display_order' => 'nullable|integer',
         ]);
         $this->categoryRepo->create($data);
         return redirect()->route('categories.index')->with('success', 'Tạo danh mục thành công!');
@@ -78,6 +79,7 @@ class CategoryController extends Controller
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
             'icon' => 'nullable|string|max:255',
+            'display_order' => 'nullable|integer',
         ]);
         $this->categoryRepo->update($id, $data);
         return redirect()->route('categories.index')->with('success', 'Cập nhật danh mục thành công!');
@@ -90,5 +92,27 @@ class CategoryController extends Controller
     {
         $this->categoryRepo->delete($id);
         return redirect()->route('categories.index')->with('success', 'Xóa danh mục thành công!');
+    }
+
+    /**
+     * Hiển thị danh sách category cho frontend
+     */
+    public function listFrontend()
+    {
+        $categories = $this->categoryRepo->all();
+        return view('frontend.categories.list', compact('categories'));
+    }
+
+    /**
+     * Hiển thị danh sách bài viết theo category (slug)
+     */
+    public function postsByCategory($slug)
+    {
+        $category = $this->categoryRepo->findBySlug($slug);
+        if (!$category) {
+            abort(404);
+        }
+        $posts = $category->posts()->latest()->paginate(10);
+        return view('frontend.categories.posts', compact('category', 'posts'));
     }
 }

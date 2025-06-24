@@ -33,6 +33,7 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">Hình ảnh bài viết</label>
                     <input type="file" name="image" id="image" class="form-control">
+                    <small class="form-text text-muted">Dung lượng tối đa: 3MB</small>
                     @if($post->image)
                         <div class="mt-2"><img src="{{ asset('storage/'.$post->image) }}" alt="Ảnh hiện tại" style="max-width:150px;"></div>
                     @endif

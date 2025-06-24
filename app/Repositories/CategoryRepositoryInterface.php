@@ -9,4 +9,8 @@ interface CategoryRepositoryInterface
     public function create(array $data);
     public function update($id, array $data);
     public function delete($id);
+    /**
+     * Tìm category theo slug
+     */
+    public function findBySlug($slug);
 } 

@@ -21,6 +21,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                $request->session()->flash('warning', 'Bạn đã đăng nhập, không thể vào trang đăng nhập!');
                 return redirect(RouteServiceProvider::HOME);
             }
         }

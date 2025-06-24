@@ -36,6 +36,12 @@
             </select>
             @error('parent_id')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
+        <div class="mb-3">
+            <label for="display_order" class="form-label">Thứ tự hiển thị</label>
+            <input type="number" name="display_order" id="display_order" class="form-control" value="{{ old('display_order', 0) }}">
+            <small class="form-text text-muted">Số nhỏ hơn sẽ hiển thị trước</small>
+            @error('display_order')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
         <button type="submit" class="btn btn-primary">Lưu</button>
         <a href="{{ route('categories.index') }}" class="btn btn-secondary">Quay lại</a>
     </form>

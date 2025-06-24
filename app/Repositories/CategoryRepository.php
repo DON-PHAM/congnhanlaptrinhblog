@@ -37,4 +37,12 @@ class CategoryRepository implements CategoryRepositoryInterface
         $category = $this->find($id);
         return $category->delete();
     }
+
+    /**
+     * Tìm category theo slug
+     */
+    public function findBySlug($slug)
+    {
+        return Category::where('slug', $slug)->first();
+    }
 } 

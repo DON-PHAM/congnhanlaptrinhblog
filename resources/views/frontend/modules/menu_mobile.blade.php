@@ -2,7 +2,7 @@
             <div class='widget LinkList' data-version='2' id='LinkList003'>
                 <ul class='mobileMenu'>
                     <li class='mHome'>
-                        <a aria-label='Home' href='https://ngohoanganhtuank7.blogspot.com/' role='button'>
+                        <a aria-label='Home' href="{{ route('home') }}" role='button'>
                             <svg class='line' viewBox='0 0 24 24'>
                                 <g transform='translate(2.400000, 2.000000)'>
                                     <path class='fill'

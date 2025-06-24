@@ -7,7 +7,7 @@ class CategoryIcons
     public const ICONS = [
         'user' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.809,18.9067 C3.137,18.9067 0,18.3517 0,16.1277 C0,13.9037 3.117,11.8997 6.809,11.8997 C10.481,11.8997 13.617,13.8847 13.617,16.1077 C13.617,18.3307 10.501,18.9067 6.809,18.9067 Z" fill="currentColor"/><circle cx="6.8" cy="7" r="4" fill="currentColor"/></svg>',
         'book' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="10" height="5" fill="currentColor"/><path d="M10,20 L15,25" stroke="currentColor"/></svg>',
-        'about' => '<svg width="24" height="24" class="line" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        'about' => '<svg class="line" width="24" height="24" class="line" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <g transform="translate(2.749500, 2.549500)">
                                         <path d="M6.809,18.9067 C3.137,18.9067 9.41469125e-14,18.3517 9.41469125e-14,16.1277 C9.41469125e-14,13.9037 3.117,11.8997 6.809,11.8997 C10.481,11.8997 13.617,13.8847 13.617,16.1077 C13.617,18.3307 10.501,18.9067 6.809,18.9067 Z">
                                         </path>
@@ -18,7 +18,24 @@ class CategoryIcons
                                         <path d="M14.7113,11.104 C16.6993,11.104 18.3973,12.452 18.3973,13.655 C18.3973,14.364 17.8123,15.092 16.9223,15.301">
                                         </path>
                                     </g>
-                                </svg>'
+                                </svg>',
+        'sitemap' => '<svg class="line" width="24" height="24" viewBox="0 0 24 24">
+                                    <g transform="translate(3.610000, 2.750100)">
+                                        <line x1="11.9858" x2="4.7658" y1="12.9463" y2="12.9463"></line>
+                                        <line x1="11.9858" x2="4.7658" y1="9.1865" y2="9.1865"></line>
+                                        <line x1="7.521" x2="4.766" y1="5.4272" y2="5.4272"></line>
+                                        <path d="M7.63833441e-14,9.25 C7.63833441e-14,16.187 2.098,18.5 8.391,18.5 C14.685,18.5 16.782,16.187 16.782,9.25 C16.782,2.313 14.685,0 8.391,0 C2.098,0 7.63833441e-14,2.313 7.63833441e-14,9.25 Z">
+                                        </path>
+                                    </g>
+                                </svg>',
+                                'download' => '<svg class="line" width="24" height="24" viewBox="0 0 24 24">
+                                    <g transform="translate(2.000000, 2.000000)">
+                                        <line x1="9.8791" x2="9.8791" y1="12.791" y2="0.75"></line>
+                                        <polyline points="12.7951 9.8642 9.8791 12.7922 6.9631 9.8642"></polyline>
+                                        <path d="M14.3703,5.2587 C17.9493,5.5887 19.2503,6.9287 19.2503,12.2587 C19.2503,19.3587 16.9393,19.3587 10.0003,19.3587 C3.0593,19.3587 0.7503,19.3587 0.7503,12.2587 C0.7503,6.9287 2.0503,5.5887 5.6303,5.2587">
+                                        </path>
+                                    </g>
+                                </svg>',
         // Thêm các icon khác ở đây
     ];
 

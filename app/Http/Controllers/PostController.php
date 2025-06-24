@@ -6,6 +6,7 @@ use App\Repositories\PostRepositoryInterface;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\TagRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -47,7 +48,7 @@ class PostController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:3072',
             'slug' => 'required|string|max:255|unique:posts,slug',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id',
@@ -104,7 +105,7 @@ class PostController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'excerpt' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:3072',
             'slug' => 'required|string|max:255|unique:posts,slug,' . $id,
             'content' => 'required',
             'category_id' => 'required|exists:categories,id',
@@ -139,7 +140,47 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        $post = $this->postRepo->find($id);
+        if ($post && $post->image && Storage::disk('public')->exists($post->image)) {
+            Storage::disk('public')->delete($post->image);
+        }
         $this->postRepo->delete($id);
         return redirect()->route('posts.index')->with('success', 'Xóa bài viết thành công!');
+    }
+
+    /**
+     * Hiển thị chi tiết bài viết ở frontend
+     */
+    public function showFrontend($slug)
+    {
+        $post = $this->postRepo->findBySlug($slug);
+        if (!$post) {
+            abort(404);
+        }
+        $post->increment('views');
+        $post->refresh();
+        return view('frontend.posts.detail', compact('post'));
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        $posts = $this->postRepo->all()->filter(function($post) use ($q) {
+            return stripos($post->title, $q) !== false;
+        });
+        return view('frontend.posts.search', compact('q', 'posts'));
+    }
+
+    /**
+     * Tăng lượt xem bài viết qua AJAX
+     */
+    public function increaseView($id)
+    {
+        $post = $this->postRepo->find($id);
+        if ($post) {
+            $post->increment('views');
+            return response()->json(['success' => true, 'views' => $post->views + 1]);
+        }
+        return response()->json(['success' => false], 404);
     }
 }
