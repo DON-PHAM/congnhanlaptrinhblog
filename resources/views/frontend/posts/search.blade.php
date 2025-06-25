@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+
+@section('title', 'Tìm kiếm: ' . $q . ' - Công nhân lập trình')
+
 @section('content')
 <main class="mainbar">
     <div class="container mt-4">
@@ -48,5 +51,5 @@
     'updated_at' => now(),
     'user' => null,
     'category' => null
-]) !!}
+], false) !!}
 @endpush 

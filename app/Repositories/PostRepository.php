@@ -45,4 +45,9 @@ class PostRepository implements PostRepositoryInterface
     {
         return Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
     }
+
+    public function paginateWithRelations($perPage = 10, $relations = ['category'])
+    {
+        return Post::with($relations)->orderByDesc('created_at')->paginate($perPage);
+    }
 } 

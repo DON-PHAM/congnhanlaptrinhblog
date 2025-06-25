@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     protected $categoryRepo;
 
@@ -35,18 +35,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug',
-            'description' => 'nullable|string',
-            'parent_id' => 'nullable|exists:categories,id',
-            'icon' => 'nullable|string|max:255',
-            'display_order' => 'nullable|integer',
-        ]);
+        $data = $request->validated();
         $this->categoryRepo->create($data);
-        return redirect()->route('categories.index')->with('success', 'Tạo danh mục thành công!');
+        return redirect()->route('categories.index')->with('success', $this->getCreateSuccessMessage('categories'));
     }
 
     /**
@@ -71,18 +64,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $id,
-            'description' => 'nullable|string',
-            'parent_id' => 'nullable|exists:categories,id',
-            'icon' => 'nullable|string|max:255',
-            'display_order' => 'nullable|integer',
-        ]);
+        $data = $request->validated();
         $this->categoryRepo->update($id, $data);
-        return redirect()->route('categories.index')->with('success', 'Cập nhật danh mục thành công!');
+        return redirect()->route('categories.index')->with('success', $this->getUpdateSuccessMessage('categories'));
     }
 
     /**
@@ -91,7 +77,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->categoryRepo->delete($id);
-        return redirect()->route('categories.index')->with('success', 'Xóa danh mục thành công!');
+        return redirect()->route('categories.index')->with('success', $this->getDeleteSuccessMessage('categories'));
     }
 
     /**

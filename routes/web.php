@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingController;
-use App\Models\Setting;
+use App\Helpers\SettingHelper;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
@@ -43,8 +43,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 // Helper route lấy giá trị setting theo key
 Route::get('/setting/{key}', function ($key) {
-    $setting = Setting::where('key', $key)->first();
-    return $setting ? $setting->value : '';
+    return SettingHelper::get($key, '');
 })->middleware(['auth', 'admin']);
 
 // Route hiển thị danh sách category ở frontend
@@ -64,3 +63,13 @@ Route::get('/search', [PostController::class, 'search'])->name('frontend.search'
 
 // Trang about cá nhân frontend
 Route::get('/about', [AboutController::class, 'aboutFrontend'])->name('frontend.about');
+
+// Route generate sitemap
+Route::get('/sitemap.xml', function () {
+    if (!file_exists(public_path('sitemap.xml'))) {
+        \Artisan::call('sitemap:generate');
+    }
+    return response()->file(public_path('sitemap.xml'), [
+        'Content-Type' => 'application/xml'
+    ]);
+})->name('sitemap');

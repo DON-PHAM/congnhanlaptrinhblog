@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
-use Illuminate\Http\Request;
+use App\Repositories\AboutRepositoryInterface;
+use App\Http\Requests\AboutRequest;
 use Illuminate\Support\Facades\Storage;
 
-class AboutController extends Controller
+class AboutController extends BaseController
 {
+    protected $aboutRepo;
+
+    public function __construct(AboutRepositoryInterface $aboutRepo)
+    {
+        $this->aboutRepo = $aboutRepo;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $abouts = About::all();
+        $abouts = $this->aboutRepo->all();
         return view('backend.abouts.index', compact('abouts'));
     }
 
@@ -28,67 +35,44 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AboutRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'avatar' => 'nullable|image|max:2048',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:50',
-            'address' => 'nullable|string|max:255',
-            'birthday' => 'nullable|date',
-            'summary' => 'nullable|string',
-            'skills' => 'nullable|string',
-            'experience' => 'nullable|string',
-            'education' => 'nullable|string',
-            'social_links' => 'nullable|array',
-        ]);
+        $data = $request->validated();
         if ($request->hasFile('avatar')) {
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
         }
         if (isset($data['social_links'])) {
             $data['social_links'] = json_encode($data['social_links']);
         }
-        About::create($data);
-        return redirect()->route('abouts.index')->with('success', 'Tạo thông tin cá nhân thành công!');
+        $this->aboutRepo->create($data);
+        return redirect()->route('abouts.index')->with('success', $this->getCreateSuccessMessage('abouts'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(About $about)
+    public function show($id)
     {
+        $about = $this->aboutRepo->find($id);
         return view('backend.abouts.show', compact('about'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(About $about)
+    public function edit($id)
     {
+        $about = $this->aboutRepo->find($id);
         return view('backend.abouts.edit', compact('about'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, About $about)
+    public function update(AboutRequest $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'avatar' => 'nullable|image|max:2048',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:50',
-            'address' => 'nullable|string|max:255',
-            'birthday' => 'nullable|date',
-            'summary' => 'nullable|string',
-            'skills' => 'nullable|string',
-            'experience' => 'nullable|string',
-            'education' => 'nullable|string',
-            'social_links' => 'nullable|array',
-        ]);
+        $about = $this->aboutRepo->find($id);
+        $data = $request->validated();
         if ($request->hasFile('avatar')) {
             // Xóa avatar cũ nếu có
             if ($about->avatar && Storage::disk('public')->exists($about->avatar)) {
@@ -99,17 +83,17 @@ class AboutController extends Controller
         if (isset($data['social_links'])) {
             $data['social_links'] = json_encode($data['social_links']);
         }
-        $about->update($data);
-        return redirect()->route('abouts.index')->with('success', 'Cập nhật thông tin cá nhân thành công!');
+        $this->aboutRepo->update($id, $data);
+        return redirect()->route('abouts.index')->with('success', $this->getUpdateSuccessMessage('abouts'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(About $about)
+    public function destroy($id)
     {
-        $about->delete();
-        return redirect()->route('abouts.index')->with('success', 'Xóa thông tin cá nhân thành công!');
+        $this->aboutRepo->delete($id);
+        return redirect()->route('abouts.index')->with('success', $this->getDeleteSuccessMessage('abouts'));
     }
 
     /**
@@ -117,7 +101,7 @@ class AboutController extends Controller
      */
     public function aboutFrontend()
     {
-        $about = About::first();
+        $about = $this->aboutRepo->first();
         return view('frontend.about.index', compact('about'));
     }
 }

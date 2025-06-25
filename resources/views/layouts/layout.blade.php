@@ -6,7 +6,7 @@
 
     <!-- Name : Median UI Version : 1.5 Date : May 15, 2021 Demo : median-ui.jagodesain.com Type : Premium Designer : Muhammad Maki Website : www.jagodesain.com ============================================================================ NOTE : This theme is premium (paid). You can only get it by purchasing officially. If you get it for free through any method, that means you get it illegally. ============================================================================ -->
     <!--[ Homepage title ]-->
-    <title>Công nhân lập trình</title>
+    <title>@hasSection('title')@yield('title')@else{{ config('app.name', 'Công nhân lập trình') }}@endif</title>
     <!--[ Meta for browser ]-->
     <meta charset='UTF-8' />
     @stack('seo')
@@ -14,7 +14,7 @@
         name='viewport' />
     <meta content='IE=edge' http-equiv='X-UA-Compatible' />
     <!-- Link Canonical -->
-    <link href='https://congnhanlaptrinh.info.vn' rel='canonical' />
+    <link href='{{ App\Helpers\SeoHelper::generateCanonicalUrl() }}' rel='canonical' />
     <!--[ Browser data, description and keyword ]-->
 
     <!--[ Theme Color ]-->

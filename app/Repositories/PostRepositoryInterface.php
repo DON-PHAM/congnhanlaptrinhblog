@@ -13,4 +13,5 @@ interface PostRepositoryInterface
      * Tìm post theo slug
      */
     public function findBySlug($slug);
+    public function paginateWithRelations($perPage = 10, $relations = ['category']);
 } 

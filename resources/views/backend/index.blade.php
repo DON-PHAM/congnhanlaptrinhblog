@@ -103,7 +103,7 @@
                 ></path>
               </svg>
               <a
-                href="#"
+                href="{{ route('users.index') }}"
                 class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
               >
                 Xem chi tiết <i class="bi bi-link-45deg"></i>
@@ -149,296 +149,202 @@
           <!--end::Col-->
         </div>
         <!--end::Row-->
+        
         <!--begin::Row-->
         <div class="row">
           <!-- Start col -->
-          <div class="col-lg-7 connectedSortable">
+          <div class="col-lg-8 connectedSortable">
+            <!-- Biểu đồ tròn tổng quan -->
             <div class="card mb-4">
-              <div class="card-header"><h3 class="card-title">Sales Value</h3></div>
-              <div class="card-body"><div id="revenue-chart"></div></div>
-            </div>
-            <!-- /.card -->
-            <!-- DIRECT CHAT -->
-            <div class="card direct-chat direct-chat-primary mb-4">
               <div class="card-header">
-                <h3 class="card-title">Direct Chat</h3>
-                <div class="card-tools">
-                  <span title="3 New Messages" class="badge text-bg-primary"> 3 </span>
-                  <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
-                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-tool"
-                    title="Contacts"
-                    data-lte-toggle="chat-pane"
-                  >
-                    <i class="bi bi-chat-text-fill"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
-                    <i class="bi bi-x-lg"></i>
-                  </button>
-                </div>
+                <h3 class="card-title">Tổng quan hệ thống</h3>
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-                <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages">
-                  <!-- Message. Default to the start -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                      <span class="direct-chat-timestamp float-end"> 23 Jan 2:00 pm </span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img
-                      class="direct-chat-img"
-                      src="../../dist/assets/img/user1-128x128.jpg"
-                      alt="message user image"
-                    />
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      Is this template really for free? That's unbelievable!
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                  <!-- Message to the end -->
-                  <div class="direct-chat-msg end">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                      <span class="direct-chat-timestamp float-start"> 23 Jan 2:05 pm </span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img
-                      class="direct-chat-img"
-                      src="../../dist/assets/img/user3-128x128.jpg"
-                      alt="message user image"
-                    />
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">You better believe it!</div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                  <!-- Message. Default to the start -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                      <span class="direct-chat-timestamp float-end"> 23 Jan 5:37 pm </span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img
-                      class="direct-chat-img"
-                      src="../../dist/assets/img/user1-128x128.jpg"
-                      alt="message user image"
-                    />
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                  <!-- Message to the end -->
-                  <div class="direct-chat-msg end">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                      <span class="direct-chat-timestamp float-start"> 23 Jan 6:10 pm </span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img
-                      class="direct-chat-img"
-                      src="../../dist/assets/img/user3-128x128.jpg"
-                      alt="message user image"
-                    />
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">I would love to.</div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                </div>
-                <!-- /.direct-chat-messages-->
-                <!-- Contacts are loaded here -->
-                <div class="direct-chat-contacts">
-                  <ul class="contacts-list">
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user1-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Count Dracula
-                            <small class="contacts-list-date float-end"> 2/28/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> How have you been? I was... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user7-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Sarah Doe
-                            <small class="contacts-list-date float-end"> 2/23/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> I will be waiting for... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user3-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Nadia Jolie
-                            <small class="contacts-list-date float-end"> 2/20/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> I'll call you back at... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user5-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Nora S. Vans
-                            <small class="contacts-list-date float-end"> 2/10/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> Where is your new... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user6-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            John K.
-                            <small class="contacts-list-date float-end"> 1/27/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> Can I take a look at... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img
-                          class="contacts-list-img"
-                          src="../../dist/assets/img/user8-128x128.jpg"
-                          alt="User Avatar"
-                        />
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Kenneth M.
-                            <small class="contacts-list-date float-end"> 1/4/2023 </small>
-                          </span>
-                          <span class="contacts-list-msg"> Never mind I found... </span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                  </ul>
-                  <!-- /.contacts-list -->
-                </div>
-                <!-- /.direct-chat-pane -->
+                <canvas id="overviewChart" width="400" height="200"></canvas>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                <form action="#" method="post">
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      name="message"
-                      placeholder="Type Message ..."
-                      class="form-control"
-                    />
-                    <span class="input-group-append">
-                      <button type="button" class="btn btn-primary">Send</button>
-                    </span>
-                  </div>
-                </form>
-              </div>
-              <!-- /.card-footer-->
             </div>
-            <!-- /.direct-chat -->
+            
+            <!-- Thống kê chi tiết -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h3 class="card-title">Thống kê bài viết</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>Bài viết công khai:</span>
+                      <span class="badge bg-success">{{ $publicPosts }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>Bài viết nháp:</span>
+                      <span class="badge bg-warning">{{ $draftPosts }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>Bài viết nổi bật:</span>
+                      <span class="badge bg-primary">{{ $featuredPosts }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h3 class="card-title">Thống kê người dùng</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>Supper Admin:</span>
+                      <span class="badge bg-danger">{{ $supperAdminUsers }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>Admin:</span>
+                      <span class="badge bg-warning">{{ $adminUsers }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>User thường:</span>
+                      <span class="badge bg-info">{{ $normalUsers }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- /.Start col -->
+          
           <!-- Start col -->
-          <div class="col-lg-5 connectedSortable">
-            <div class="card text-white bg-primary bg-gradient border-primary mb-4">
-              <div class="card-header border-0">
-                <h3 class="card-title">Sales Value</h3>
-                <div class="card-tools">
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    data-lte-toggle="card-collapse"
-                  >
-                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                  </button>
-                </div>
+          <div class="col-lg-4 connectedSortable">
+            <!-- Biểu đồ tròn chi tiết -->
+            <div class="card mb-4">
+              <div class="card-header">
+                <h3 class="card-title">Phân bố dữ liệu</h3>
               </div>
-              <div class="card-body"><div id="world-map" style="height: 220px"></div></div>
-              <div class="card-footer border-0">
-                <!--begin::Row-->
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <div id="sparkline-1" class="text-dark"></div>
-                    <div class="text-white">Visitors</div>
-                  </div>
-                  <div class="col-4 text-center">
-                    <div id="sparkline-2" class="text-dark"></div>
-                    <div class="text-white">Online</div>
-                  </div>
-                  <div class="col-4 text-center">
-                    <div id="sparkline-3" class="text-dark"></div>
-                    <div class="text-white">Sales</div>
-                  </div>
+              <div class="card-body">
+                <canvas id="detailChart" width="300" height="300"></canvas>
+              </div>
+            </div>
+            
+            <!-- Thống kê nhanh -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Thống kê nhanh</h3>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tổng thẻ (Tag):</span>
+                  <span class="badge bg-secondary">{{ $tagCount }}</span>
                 </div>
-                <!--end::Row-->
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tổng bình luận:</span>
+                  <span class="badge bg-danger">{{ $commentCount }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tổng danh mục:</span>
+                  <span class="badge bg-success">{{ $categoryCount }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tổng bài viết:</span>
+                  <span class="badge bg-primary">{{ $postCount }}</span>
+                </div>
               </div>
             </div>
           </div>
-          <!-- /.Start col -->
         </div>
-        <!-- /.row (main row) -->
+        <!--end::Row-->
       </div>
       <!--end::Container-->
     </div>
     <!--end::App Content-->
   </main>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Biểu đồ tròn tổng quan
+const overviewCtx = document.getElementById('overviewChart').getContext('2d');
+const overviewChart = new Chart(overviewCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Bài viết', 'Danh mục', 'Bình luận', 'Người dùng', 'Thẻ'],
+        datasets: [{
+            data: [
+                {{ $chartData['posts'] }},
+                {{ $chartData['categories'] }},
+                {{ $chartData['comments'] }},
+                {{ $chartData['users'] }},
+                {{ $chartData['tags'] }}
+            ],
+            backgroundColor: [
+                '#007bff',
+                '#28a745', 
+                '#ffc107',
+                '#dc3545',
+                '#6c757d'
+            ],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.parsed;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return `${label}: ${value} (${percentage}%)`;
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Biểu đồ tròn chi tiết
+const detailCtx = document.getElementById('detailChart').getContext('2d');
+const detailChart = new Chart(detailCtx, {
+    type: 'pie',
+    data: {
+        labels: ['Bài viết', 'Danh mục', 'Bình luận', 'Người dùng', 'Thẻ'],
+        datasets: [{
+            data: [
+                {{ $chartData['posts'] }},
+                {{ $chartData['categories'] }},
+                {{ $chartData['comments'] }},
+                {{ $chartData['users'] }},
+                {{ $chartData['tags'] }}
+            ],
+            backgroundColor: [
+                '#007bff',
+                '#28a745',
+                '#ffc107', 
+                '#dc3545',
+                '#6c757d'
+            ],
+            borderWidth: 3,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    usePointStyle: true
+                }
+            }
+        }
+    }
+});
+</script>
+@endpush

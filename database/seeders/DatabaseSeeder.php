@@ -22,11 +22,16 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::firstOrCreate([
-            'email' => 'admin@example.com',
+            'email' => 'donpv.kma@gmail.com',
         ], [
-            'name' => 'Admin',
+            'name' => 'Quản trị viên',
             'password' => Hash::make('admin123'),
-            'role' => 'admin',
+            'role' => 'supperadmin',
+        ]);
+
+        // Seed About data
+        $this->call([
+            AboutSeeder::class,
         ]);
     }
 }

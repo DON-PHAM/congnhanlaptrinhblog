@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UserRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     protected $userRepo;
 
@@ -36,17 +35,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|string',
-        ]);
+        $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
         $this->userRepo->create($data);
-        return redirect()->route('users.index')->with('success', 'Tạo tài khoản thành công!');
+        return redirect()->route('users.index')->with('success', $this->getCreateSuccessMessage('users'));
     }
 
     /**
@@ -70,25 +64,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = $this->userRepo->find($id);
         if ($user->isSupperAdmin() && auth()->id() !== $user->id) {
             return redirect()->route('users.index')->with('error', 'Không thể sửa tài khoản supperadmin!');
         }
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
-            'role' => 'required|string',
-        ]);
+        $data = $request->validated();
         if ($data['password']) {
             $data['password'] = Hash::make($data['password']);
         } else {
             unset($data['password']);
         }
         $this->userRepo->update($id, $data);
-        return redirect()->route('users.index')->with('success', 'Cập nhật tài khoản thành công!');
+        return redirect()->route('users.index')->with('success', $this->getUpdateSuccessMessage('users'));
     }
 
     /**
@@ -101,6 +90,6 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('error', 'Không thể xóa tài khoản supperadmin!');
         }
         $this->userRepo->delete($id);
-        return redirect()->route('users.index')->with('success', 'Xóa tài khoản thành công!');
+        return redirect()->route('users.index')->with('success', $this->getDeleteSuccessMessage('users'));
     }
 }

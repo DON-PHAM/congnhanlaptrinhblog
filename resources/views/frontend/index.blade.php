@@ -1,4 +1,25 @@
 @extends('layouts.layout')
+
+@section('title', 'Công nhân lập trình - Blog chia sẻ kiến thức lập trình')
+
+@push('seo')
+    <meta name="description" content="Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân. Các bài viết về Laravel, PHP, JavaScript, và các công nghệ web hiện đại." />
+    <meta name="keywords" content="lập trình, công nghệ, Laravel, PHP, JavaScript, web development, blog công nghệ" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Công nhân lập trình - Blog chia sẻ kiến thức lập trình" />
+    <meta property="og:description" content="Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url('/') }}" />
+    <meta property="og:image" content="{{ asset('backend/assets/img/AdminLTELogo.png') }}" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Công nhân lập trình - Blog chia sẻ kiến thức lập trình" />
+    <meta name="twitter:description" content="Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân." />
+    <meta name="twitter:image" content="{{ asset('backend/assets/img/AdminLTELogo.png') }}" />
+@endpush
+
 @section('content')
 
                 <!--[ Main content ]-->
@@ -205,26 +226,4 @@ if(loadMoreBtn) {
     });
 }
 </script>
-@endpush
-
-@push('seo')
-{!! \App\Helpers\SeoHelper::generateHtmlMetaTags((object)[
-    'meta_title' => config('app.name', 'Công nhân lập trình'),
-    'title' => config('app.name', 'Công nhân lập trình'),
-    'meta_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
-    'excerpt' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
-    'meta_keywords' => 'blog, lập trình, công nghệ, phát triển bản thân',
-    'og_title' => config('app.name', 'Công nhân lập trình'),
-    'og_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
-    'og_image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
-    'slug' => '',
-    'image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
-    'twitter_title' => config('app.name', 'Công nhân lập trình'),
-    'twitter_description' => config('app.description', 'Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân.'),
-    'twitter_image' => asset(config('app.logo', 'backend/assets/img/AdminLTELogo.png')),
-    'created_at' => now(),
-    'updated_at' => now(),
-    'user' => null,
-    'category' => null
-]) !!}
 @endpush

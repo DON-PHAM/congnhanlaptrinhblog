@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\SettingRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\SettingRequest;
 
-class SettingController extends Controller
+class SettingController extends BaseController
 {
     protected $settingRepo;
 
@@ -34,14 +34,11 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SettingRequest $request)
     {
-        $data = $request->validate([
-            'key' => 'required|string|max:255|unique:settings,key',
-            'value' => 'nullable|string',
-        ]);
+        $data = $request->validated();
         $this->settingRepo->create($data);
-        return redirect()->route('settings.index')->with('success', 'Tạo cấu hình thành công!');
+        return redirect()->route('settings.index')->with('success', $this->getCreateSuccessMessage('settings'));
     }
 
     /**
@@ -65,14 +62,11 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(SettingRequest $request, $id)
     {
-        $data = $request->validate([
-            'key' => 'required|string|max:255|unique:settings,key,' . $id,
-            'value' => 'nullable|string',
-        ]);
+        $data = $request->validated();
         $this->settingRepo->update($id, $data);
-        return redirect()->route('settings.index')->with('success', 'Cập nhật cấu hình thành công!');
+        return redirect()->route('settings.index')->with('success', $this->getUpdateSuccessMessage('settings'));
     }
 
     /**
@@ -81,6 +75,6 @@ class SettingController extends Controller
     public function destroy($id)
     {
         $this->settingRepo->delete($id);
-        return redirect()->route('settings.index')->with('success', 'Xóa cấu hình thành công!');
+        return redirect()->route('settings.index')->with('success', $this->getDeleteSuccessMessage('settings'));
     }
 }

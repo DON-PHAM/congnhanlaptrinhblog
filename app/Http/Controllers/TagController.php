@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\TagRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 
-class TagController extends Controller
+class TagController extends BaseController
 {
     protected $tagRepo;
 
@@ -34,14 +34,11 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'slug' => 'required|string|max:100|unique:tags,slug',
-        ]);
+        $data = $request->validated();
         $this->tagRepo->create($data);
-        return redirect()->route('tags.index')->with('success', 'Tạo thẻ thành công!');
+        return redirect()->route('tags.index')->with('success', $this->getCreateSuccessMessage('tags'));
     }
 
     /**
@@ -64,14 +61,11 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'slug' => 'required|string|max:100|unique:tags,slug,' . $id,
-        ]);
+        $data = $request->validated();
         $this->tagRepo->update($id, $data);
-        return redirect()->route('tags.index')->with('success', 'Cập nhật thẻ thành công!');
+        return redirect()->route('tags.index')->with('success', $this->getUpdateSuccessMessage('tags'));
     }
 
     /**
@@ -80,6 +74,6 @@ class TagController extends Controller
     public function destroy($id)
     {
         $this->tagRepo->delete($id);
-        return redirect()->route('tags.index')->with('success', 'Xóa thẻ thành công!');
+        return redirect()->route('tags.index')->with('success', $this->getDeleteSuccessMessage('tags'));
     }
 }

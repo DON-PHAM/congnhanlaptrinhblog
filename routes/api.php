@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingController;
-use App\Models\Setting;
+use App\Helpers\SettingHelper;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +30,10 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::apiResource('settings', SettingController::class);
     // API lấy giá trị setting theo key
     Route::get('/setting/{key}', function ($key) {
-        $setting = Setting::where('key', $key)->first();
+        $value = SettingHelper::get($key);
         return response()->json([
             'key' => $key,
-            'value' => $setting ? $setting->value : null
+            'value' => $value
         ]);
     });
 });

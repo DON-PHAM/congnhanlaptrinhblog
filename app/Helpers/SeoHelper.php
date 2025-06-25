@@ -55,13 +55,15 @@ class SeoHelper
     /**
      * Generate HTML meta tags
      */
-    public static function generateHtmlMetaTags($post)
+    public static function generateHtmlMetaTags($post, $includeTitle = true)
     {
         $metaTags = self::generateMetaTags($post);
         $html = '';
         
         // Basic meta tags
-        $html .= '<title>' . e($metaTags['title']) . '</title>' . "\n";
+        if ($includeTitle) {
+            $html .= '<title>' . e($metaTags['title']) . '</title>' . "\n";
+        }
         $html .= '<meta name="description" content="' . e($metaTags['description']) . '">' . "\n";
         
         if (isset($metaTags['keywords'])) {
@@ -116,5 +118,16 @@ class SeoHelper
         }
         
         return json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    }
+    
+    /**
+     * Generate canonical URL
+     */
+    public static function generateCanonicalUrl($url = null)
+    {
+        if ($url) {
+            return url($url);
+        }
+        return request()->url();
     }
 } 

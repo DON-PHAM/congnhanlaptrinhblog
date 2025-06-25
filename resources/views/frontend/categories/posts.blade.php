@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+
+@section('title', $category->name . ' - Công nhân lập trình')
+
 @section('content')
 
 @push('seo')
@@ -20,7 +23,7 @@
     'updated_at' => now(),
     'user' => null,
     'category' => $category
-]) !!}
+], false) !!}
 @endpush
 
 <main class="mainbar">

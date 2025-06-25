@@ -6,6 +6,7 @@
     <title>Quản trị viên</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
     <meta name="title" content="Quản trị viên" />
     <meta name="author" content="ColorlibHQ" />
     <meta

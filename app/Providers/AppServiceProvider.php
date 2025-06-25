@@ -13,6 +13,10 @@ use App\Repositories\SettingRepositoryInterface;
 use App\Repositories\SettingRepository;
 use App\Repositories\TagRepositoryInterface;
 use App\Repositories\TagRepository;
+use App\Repositories\AboutRepositoryInterface;
+use App\Repositories\AboutRepository;
+use App\Repositories\CommentRepositoryInterface;
+use App\Repositories\CommentRepository;
 use Illuminate\Support\Facades\View;
 use App\Http\ViewComposers\CategoryComposer;
 
@@ -28,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);
         $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
+        $this->app->bind(AboutRepositoryInterface::class, AboutRepository::class);
+        $this->app->bind(CommentRepositoryInterface::class, CommentRepository::class);
     }
 
     /**

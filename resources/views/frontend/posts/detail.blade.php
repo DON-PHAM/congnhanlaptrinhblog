@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+
+@section('title', $post->meta_title ?: $post->title . ' - Công nhân lập trình')
+
 @section('content')
 
 <main class="mainbar">
@@ -55,7 +58,7 @@
 </div>
 </main>
 @push('seo')
-{!! \App\Helpers\SeoHelper::generateHtmlMetaTags($post) !!}
+{!! \App\Helpers\SeoHelper::generateHtmlMetaTags($post, false) !!}
 @endpush
 @push('scripts')
 <script>
