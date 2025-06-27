@@ -57,6 +57,15 @@ class PostController extends BaseController
         if (!empty($tags)) {
             $post->tags()->attach($tags);
         }
+
+        // Sau khi đã có $post->image, cập nhật lại og_image và twitter_image
+        if (!empty($post->image)) {
+            $imageUrl = asset('storage/' . $post->image);
+            $post->og_image = $imageUrl;
+            $post->twitter_image = $imageUrl;
+            $post->save();
+        }
+
         return redirect()->route('posts.index')->with('success', $this->getCreateSuccessMessage('posts'));
     }
 
@@ -97,6 +106,15 @@ class PostController extends BaseController
         } else {
             $post->tags()->detach();
         }
+
+        // Sau khi đã có $post->image, cập nhật lại og_image và twitter_image nếu có ảnh mới
+        if (!empty($post->image)) {
+            $imageUrl = asset('storage/' . $post->image);
+            $post->og_image = $imageUrl;
+            $post->twitter_image = $imageUrl;
+            $post->save();
+        }
+
         return redirect()->route('posts.index')->with('success', $this->getUpdateSuccessMessage('posts'));
     }
 

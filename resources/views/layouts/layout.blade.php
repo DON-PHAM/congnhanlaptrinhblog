@@ -3,13 +3,14 @@
 <!--[ <head> Open ]-->
 
 <head>
-
-    <!-- Name : Median UI Version : 1.5 Date : May 15, 2021 Demo : median-ui.jagodesain.com Type : Premium Designer : Muhammad Maki Website : www.jagodesain.com ============================================================================ NOTE : This theme is premium (paid). You can only get it by purchasing officially. If you get it for free through any method, that means you get it illegally. ============================================================================ -->
     <!--[ Homepage title ]-->
     <title>@hasSection('title')@yield('title')@else{{ config('app.name', 'Công nhân lập trình') }}@endif</title>
     <!--[ Meta for browser ]-->
     <meta charset='UTF-8' />
     @stack('seo')
+    <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('favicons/favicon-16x16.png') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
     <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5'
         name='viewport' />
     <meta content='IE=edge' http-equiv='X-UA-Compatible' />

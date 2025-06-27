@@ -214,6 +214,18 @@
         }
     });
 
+    // Tự động điền OG Image URL và Twitter Image URL khi chọn ảnh
+    document.getElementById('image').addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            // Lấy tên file
+            const fileName = this.files[0].name;
+            // Đường dẫn public dự kiến
+            const imageUrl = window.location.origin + '/storage/posts/' + fileName;
+            document.getElementById('og_image').value = imageUrl;
+            document.getElementById('twitter_image').value = imageUrl;
+        }
+    });
+
     $(document).ready(function() {
         $('#tags').select2({
             placeholder: 'Chọn tag',

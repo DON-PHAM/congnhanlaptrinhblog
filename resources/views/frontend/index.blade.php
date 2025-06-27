@@ -11,7 +11,7 @@
     <meta property="og:description" content="Blog chia sẻ kiến thức lập trình, công nghệ, phát triển bản thân." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url('/') }}" />
-    <meta property="og:image" content="{{ asset('backend/assets/img/AdminLTELogo.png') }}" />
+    <meta property="og:image" content="{{ asset('favicon-16x16.png') }}" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

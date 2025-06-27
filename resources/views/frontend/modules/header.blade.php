@@ -24,17 +24,16 @@
                         </label>
                     </div>
                     <!--[ Header widget ]-->
-                    <div class='section' id='header-widget'>
-                        <div class='widget Header' data-version='2' id='Header1'>
-                            <div class='headerInner'>
-                                <h1>
-                                    <span class='headerTitle'>
-                                        congnhanlaptrinh
-                                    </span>
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="section" id="header-widget"><div class="widget Header" data-version="2" id="Header1">
+<a href="{{route('home')}}"><img alt="Công nhân lập trình" src="{{asset('frontend/images/logo/logo.png')}}" title="Công nhân lập trình"></a>
+<div class="headerInner replaced">
+<h1>
+<span class="headerTitle">
+Công nhân lập trình
+</span>
+</h1>
+</div>
+</div></div>
                 </div>
                 <div class='headerDiv headerRight'>
                     <!--[ Header Search ]-->
