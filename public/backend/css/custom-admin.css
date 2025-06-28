@@ -1,0 +1,119 @@
+/* Custom Admin Styles */
+
+/* DataTables enhancements */
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+.dataTables_wrapper .table {
+    margin-bottom: 1rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataTables_wrapper .table thead th {
+    position: relative;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #495057;
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+.dataTables_wrapper .table tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.03);
+}
+
+.dataTables_wrapper .table tbody td {
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+/* Action buttons */
+.action-buttons {
+    white-space: nowrap;
+    display: flex;
+    gap: 5px;
+}
+
+.action-buttons .btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.action-buttons .btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.action-buttons .btn-view {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.action-buttons .btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.action-buttons .btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Status badges */
+.badge-status {
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.badge-featured {
+    background-color: #20c997;
+    color: white;
+}
+
+/* Card enhancements */
+.card-admin {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+}
+
+.card-admin .card-header {
+    background-color: white;
+    border-bottom: 1px solid #edf2f7;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-admin .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.card-admin .card-body {
+    padding: 1.5rem;
+}
+
+/* Custom Pagination */
+.pagination {
+    margin-top: 1rem;
+}
+
+/* Responsive tables */
+@media (max-width: 767.98px) {
+    .dataTables_wrapper {
+        overflow-x: auto;
+    }
+} 
